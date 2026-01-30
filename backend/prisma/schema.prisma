@@ -1,0 +1,21 @@
+generator client {
+  provider      = "prisma-client-js"
+  // For standard Node.js projects, we stay with 'library'
+  engineType    = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  // In Prisma 7, when a prisma.config.ts exists, 
+  // you MUST NOT put a URL or env() here.
+}
+
+model Contact {
+  id             Int      @id @default(autoincrement())
+  name           String
+  category       String   @default("Friend")
+  status         String?
+  lastContacted  DateTime @default(now())
+  nextReminder   DateTime @default(now())
+  createdAt      DateTime @default(now())
+}
